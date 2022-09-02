@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Project using the latest from React 18
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a copy of the main branch but with some modifications, since the react.org tutorial is based on an old version of react, and in this branch we make use of new features of react.
+
+These features are the use of hooks, in addition to not creating components with classes.
 
 ## Available Scripts
 

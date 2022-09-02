@@ -2,9 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
-/* --- Toca revisar modificar esto a react 18 ---*/
+/* --- React 18 (Sin clase y usando hooks) ---*/
 
-class Square extends React.Component {
+function Square() {
+  const [value, setValue] = React.useState(null);
+  return (
+    <button className="square" onClick={() => setValue("X")}>
+      {value}
+    </button>
+  );
+}
+
+/* --- React usando clases sin hooks) ---*/
+
+/* class Square extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,9 +29,38 @@ class Square extends React.Component {
       </button>
     );
   }
+} */
+
+function Board() {
+  const renderSquare = (i) => {
+    return <Square value={i} />;
+  };
+
+  const status = "Next player: X";
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
+      </div>
+      <div className="board-row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+    </div>
+  );
 }
 
-class Board extends React.Component {
+/* class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
@@ -49,23 +89,37 @@ class Board extends React.Component {
       </div>
     );
   }
+} */
+
+function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <div>{/* status */}</div>
+        <ol>{/* TODO */}</ol>
+      </div>
+    </div>
+  );
 }
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
-    );
-  }
-}
+// class Game extends React.Component {
+//   render() {
+//     return (
+//       <div className="game">
+//         <div className="game-board">
+//           <Board />
+//         </div>
+//         <div className="game-info">
+//           <div>{/* status */}</div>
+//           <ol>{/* TODO */}</ol>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
 // ========================================
 
