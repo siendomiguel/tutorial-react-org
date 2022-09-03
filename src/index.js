@@ -4,11 +4,11 @@ import "./index.css";
 
 /* --- React 18 (Sin clase y usando hooks) ---*/
 
-function Square() {
-  const [value, setValue] = React.useState(null);
+function Square(props) {
+//  const [value, setValue] = React.useState(null);
   return (
-    <button className="square" onClick={() => setValue("X")}>
-      {value}
+    <button className="square" onClick={() => props.onClick()}>
+      {props.value}
     </button>
   );
 }
@@ -32,8 +32,24 @@ function Square() {
 } */
 
 function Board() {
+
+  const [squares, setSquares] = React.useState(Array(9).fill(null));
+
+  console.log(squares)
+
+  function handleClick(i) {
+    const squares = squares.slice();
+    squares[i] = 'X';
+    setSquares({squares: squares});
+    console.log(setSquares)
+  }
+
+  
   const renderSquare = (i) => {
-    return <Square value={i} />;
+    return (
+    <Square value={i}
+    onClick={() => handleClick(i)}
+    />)
   };
 
   const status = "Next player: X";
